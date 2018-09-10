@@ -1,0 +1,416 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+
+[bar/mybar]
+monitor = ${env:MONITOR}
+width = 100%
+height = 17
+offset-x = 0
+offset-y = 0
+fixed-center = true
+
+background = ${xrdb:color0:#ff}
+;background = #000000ff
+foreground = #ffffff
+
+;lineheight = 1
+;linecolor = #555
+overline-size = 0
+overline-color = #151515
+underline-size = 0
+underline-color = #151515
+
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+;font-0 = PowerlineExtraSymbols:size=13;3
+font-0 = Source Code Pro for Powerline:pixelsize=10;2
+font-1 = Unifont:size=9:medium:fontformat=truetype;0
+font-2 = WunconSiji:pixelsize=10;2
+
+modules-left = i3 xwindow right2
+modules-center =
+modules-right = left1 volume left3 memory left2 cpu left3 temperature left2 wlan left3 date left2 date2 left3 battery
+
+tray-position = right
+tray-padding = 4
+tray-detached = false
+tray-offset-y = 0
+tray-maxsize = 16
+
+tray-transparent = false
+tray-background = ${xrdb:color0:#ff}
+
+#override-redirect = true
+#wm-restack = i3
+bottom = false
+
+
+[module/custommpd]
+type = custom/script
+exec = ~/.local/bin/zscroll.sh
+label =  %output%
+tail = true
+
+[module/screen]
+type = custom/text
+content =  screen
+content-foreground = ${xrdb:color15:#00}
+content-background = ${xrdb:color0:#ff}
+click-left = pkill -USR1 redshift
+click-right = arandr
+scroll-up = light -A 5
+scroll-down = light -U 5
+content-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 100
+format-padding = 1
+format-foreground = ${xrdb:color0:#ff}
+format-background = ${xrdb:color15:#00}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+mount-1 = /home
+mount-2 = /invalid/mountpoint
+
+label-mounted = %mountpoint%: %percentage_free%
+
+label-unmounted = %mountpoint%: not mounted
+label-unmounted-foreground = #55
+
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+pin-workspaces = true
+
+label-focused = %index%
+label-focused-background = ${xrdb:color15:#00}
+label-focused-foreground = ${xrdb:color0:#ff}
+label-focused-overline= #ff
+label-focused-padding = 1
+
+label-unfocused-background = ${xrdb:color15:#00}
+label-unfocused-foreground = ${xrdb:color3:#00}
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-urgent = %index%!
+label-urgent-background = ${xrdb:color2:#ff}
+label-urgent-foreground = ${xrdb:color0:#ff}
+label-urgent-padding = 1
+
+label-visible = %index%
+label-visible-background = ${xrdb:color15:#00}
+label-visible-foreground = #55
+label-visible-padding = 1
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev><icon-stop><toggle><icon-next> <icon-repeat> <icon-random> <icon-repeatone>
+;format-online = <label-song> <icon-repeat> <icon-random>
+
+label-song =  %title%
+label-song-maxlen = 70
+label-song-ellipsis = true
+
+icon-prev = 
+icon-seekb = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-seekf = 
+
+;icon-random = 
+;icon-repeat = 
+icon-random = z
+icon-repeat = r
+icon-repeatone = s
+
+toggle-on-foreground = #e60053
+toggle-off-foreground = #55
+
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+
+format = <ramp><label>
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label =  %percentage%%
+label-overline = #ff0
+format-foreground = ${xrdb:color0:#ff}
+format-background = ${xrdb:color15:#00}
+format-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 2
+label =  %percentage_used%%
+;label-overline = #4bffdc
+format-foreground = ${xrdb:color15:#00}
+format-background = ${xrdb:color0:#ff}
+format-padding = 1
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 5.0
+
+format-connected = <ramp-signal><label-connected>
+format-connected-overline = #9f78e1
+format-disconnected-overline = ${self.format-connected-overline}
+format-background = ${xrdb:color0:#00}
+
+label-connected = "%essid% "
+label-connected-foreground = ${xrdb:color0:#ff}
+label-connected-background = ${xrdb:color15:#00}
+label-connected-padding = 0
+;label-disconnected = %ifname% disconnected
+label-disconnected =  %ifname%
+label-disconnected-foreground = ${xrdb:color0:#ff}
+label-disconnected-background = ${xrdb:color15:#00}
+label-disconnected-padding = 1
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${xrdb:color0:#ff}
+ramp-signal-padding = 1
+;ramp-signal-4-foreground = #000
+;ramp-signal-3-foreground = #000
+;ramp-signal-2-foreground = #000
+;ramp-signal-1-foreground = #000
+;ramp-signal-0-foreground = #000
+
+[module/eth]
+type = internal/network
+interface = enp4s0
+interval = 3.0
+
+format-connected-overline = #55aa55
+format-disconnected-overline = ${self.format-connected-overline}
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+label-connected =  %local_ip%
+label-disconnected =  %ifname%
+label-disconnected-foreground = #55
+
+
+[module/date]
+type = internal/date
+date =  %I:%M
+;date-alt =  %a, %b %d, %Y
+interval = 60
+format-overline = #0a6cf5
+format-foreground = ${xrdb:color15:#00}
+format-background = ${xrdb:color0:#ff}
+format-padding = 1
+
+[module/date2]
+type = custom/script
+exec = date +"%a, %b %d"
+label =  %output%
+click-left = gsimplecal
+format-foreground = ${xrdb:color0:#ff}
+format-background = ${xrdb:color15:#00}
+format-padding = 1
+
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume>
+
+label-volume =  %percentage%%
+label-volume-foreground = ${xrdb:color0:#ff}
+label-volume-background = ${xrdb:color15:#00}
+label-volume-padding = 1
+
+label-muted =  MUTED
+label-muted-foreground = ${xrdb:color0:#ff}
+label-muted-padding = 1
+
+bar-volume-width = 20
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #ff
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #55
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+;format-charging = <animation-charging><label-charging>
+format-charging =  <label-charging> 
+format-charging-overline = #ffb52a
+format-charging-foreground = ${xrdb:color15:#00}
+format-charging-padding = 1
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-overline = ${self.format-charging-overline}
+format-discharging-foreground = ${xrdb:color15:#00}
+format-discharging-padding = 1
+format-full =  <label-full>
+format-full-overline = ${self.format-charging-overline}
+format-full-foreground = ${xrdb:color15:#00}
+format-full-padding = 1
+label-charging-foreground = ${xrdb:color15:#00}
+label-discharging-foreground = ${xrdb:color15:#00}
+label-full-foreground = ${xrdb:color15:#00}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${xrdb:color15:#00}
+ramp-capacity-0-foreground = ${xrdb:color15:#00}
+ramp-capacity-1-foreground = ${xrdb:color15:#00}
+ramp-capacity-2-foreground = ${xrdb:color15:#00}
+;ramp-capacity-2-foreground = #00cc00
+;ramp-capacity-1-foreground = #ffff00
+;ramp-capacity-0-foreground = #e60053
+
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-foreground = #42f4d7
+;animation-charging-framerate = 750
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format = <ramp> <label>
+format-background = ${xrdb:color0:#ff}
+format-overline = #ff7f50
+format-padding = 1
+format-warn = <ramp> <label-warn>
+format-warn-background = ${xrdb:color0:#ff}
+format-warn-overline = ${self.format-overline}
+format-warn-padding = 1
+
+label = %temperature%
+label-foreground = ${xrdb:color15:#00}
+label-warn = %temperature%
+;label-warn-foreground = #e60053
+label-warn-foreground = #ff0000
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${xrdb:color15:#00}
+;ramp-2-foreground = #ffff00
+;ramp-1-foreground = #00cc00
+;ramp-0-foreground = #0000ff
+
+
+[module/powermenu]
+type = custom/menu
+
+label-open = %{O-2}%{O10}
+label-open-foreground = #e60053
+label-close = 
+label-close-foreground = #e60053
+label-separator = |
+label-separator-foreground = #55
+
+menu-0-0 = reboot
+menu-0-0-exec = systemctl reboot
+menu-0-1 = power off
+menu-0-1-exec = systemctl poweroff
+menu-0-2 = lock
+menu-0-2-exec = ~/.config/i3/lock/lock.sh
+menu-0-3 = log out
+menu-0-3-exec = i3-msg exit
+menu-0-4 = hibernate
+menu-0-4-exec = systemctl hibernate
+
+[module/left1]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color15:#00}
+content-background = ${root.background}
+
+[module/left2]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color15:#00}
+content-background = ${xrdb:color0:#ff}
+
+[module/left3]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color0:#ff}
+content-background = ${xrdb:color15:#00}
+
+[module/right1]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color15:#00}
+content-background = ${xrdb:color0:#ff}
+
+[module/right2]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color15:#ff}
+content-background = ${root.background}
+
+; vim:ft=dosini
