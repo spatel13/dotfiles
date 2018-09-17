@@ -6,7 +6,7 @@ git clone --bare git@github.com:spatel13/dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@'
 
 mkdir -p .config-backup
-config checkout arch
+config checkout master
 if [ $? = 0 ]; then
     echo "Checked out config.";
 else
@@ -14,25 +14,25 @@ else
     config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
 
-config checkout arch
+config checkout master
 config config status.showUntrackedFiles no
 
-# INSTALL packer
-sudo pacman -S jshon expac
+# INSTALL pikaur
+mkdir -p ~/Development
+cd ~/Development
 
-wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer
-
-mv PKGBUILD\?h\=packer PKGBUILD
-
-makepkg
-
-sudo pacman -U packer-*.pkg.tar.xz
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
 
 # update & upgrade
-packer -Syyu
+pikaur -Syyu
+
+# Increase /tmp size
+sudo mount -o remount,size=10G,noatime /tmp
 
 # INSTALL new apps
-packer -S git zsh emacs tmux rxvt-unicode python python-pip compton rofi ranger i3-gaps polybar google-chrome dropbox light acpi powertop xorg xorg-xinit nvidia openssh slock terminus-font noto-font xbindkeys bumblebee primus bbswitch spotify slack-desktop gpmdp networkmanager-openvpn 
+pikaur -S git zsh emacs tmux rxvt-unicode python python-pip compton rofi ranger i3-gaps polybar google-chrome dropbox light acpi powertop xorg xorg-xinit nvidia openssh slock terminus-font noto-font xbindkeys bumblebee primus bbswitch spotify slack-desktop gpmdp networkmanager-openvpn nerd-fonts-complete 
 
 # INSTALL oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
