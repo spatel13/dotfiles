@@ -178,15 +178,17 @@ exec_always xrandr --output HDMI-2 --off --output HDMI-1 --off --output DP-1 --o
 # Executing startup applications
 exec nm-applet &
 exec devmon &
-# exec dropbox &
-exec gpmdp &
-exec spotify &
+exec dropbox &
+# exec gpmdp &
+# exec spotify &
 exec slack &
 exec redshift-gtk &
-
+exec solaar &
+exec blueman-applet &
 
 exec_always --no-startup-id polybar statusbar
 exec_always $HOME/.config/polybar/launch.sh
+exec_always feh --bg-fill ~/.wallpaper.jpg
 
 exec --no-startup-id ~/.config/i3/blurme/blurme &
 exec --no-startup-id compton -f --config ~/.config/compton.conf
@@ -194,8 +196,8 @@ exec --no-startup-id compton -f --config ~/.config/compton.conf
 
 ## Custom Keybinding
 # Volume Control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # Brightness Control
