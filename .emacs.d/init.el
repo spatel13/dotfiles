@@ -8,16 +8,6 @@
 (setq inhibit-startup-message t)
 (setq show-paren-mode t)
 
-;; Tell emacs where is your personal elisp lib dir
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-;; load the packaged named xyz.
-(load "indent-guide") ;; best not to include the ending “.el” or “.elc”
-(indent-guide-global-mode)
-
-(load "powerline")
-(powerline-default-theme)
-
 (require 'package)
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -27,7 +17,7 @@
 (package-initialize)
 
 ; list the packages you want
-(setq package-list '(god-mode writeroom-mode ace-jump-mode anaconda-mode dash dracula-theme f flx flx-ido ghub git-commit ido-completing-read+ ido-vertical-mode let-alist magit magit-popup memoize org org-grep py-autopep8 with-editor indent-guide powerline))
+(setq package-list '(god-mode writeroom-mode ace-jump-mode anaconda-mode dash dracula-theme f flx flx-ido ghub git-commit ido-completing-read+ ido-vertical-mode let-alist magit magit-popup memoize org org-grep py-autopep8 with-editor indent-guide powerline neotree all-the-icons flycheck))
 
 ; fetch the list of packages available 
 (unless package-archive-contents
@@ -37,6 +27,14 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(global-flycheck-mode)
+
+(load "indent-guide") ;; best not to include the ending “.el” or “.elc”
+(indent-guide-global-mode)
+
+(load "powerline")
+(powerline-default-theme)
 
 (autoload
   'ace-jump-mode
@@ -136,7 +134,7 @@
     ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" "ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default)))
  '(package-selected-packages
    (quote
-    (powerline indent-guide py-autopep8 smart-tabs-mode writeroom-mode org-grep magit ido-vertical-mode ido-completing-read+ god-mode flx-ido dracula-theme auto-complete anaconda-mode ace-jump-mode)))
+    (vue-html-mode rjsx-mode all-the-icons neotree powerline indent-guide py-autopep8 smart-tabs-mode writeroom-mode org-grep magit ido-vertical-mode ido-completing-read+ god-mode flx-ido dracula-theme auto-complete anaconda-mode ace-jump-mode)))
  '(whitespace-style
    (quote
     (face trailing tabs spaces lines newline empty indentation::space space-before-tab space-mark tab-mark newline-mark))))
@@ -149,15 +147,6 @@
  '(default ((t (:height 100 :family "Hack")))))
 
 (setq require-final-newline t)
-(defun rm-guess-indent-tabs-mode ()
- "Attempts to set `indent-tabs-mode' by examining indentation at
-the end of the file."
- (save-excursion
-   (goto-char (point-max))
-   (while (and (re-search-backward "^[ \t]" nil t)
-               (null (nth 8 (syntax-ppss)))))
-   (setq-local indent-tabs-mode (eql (char-after) ?\t))))
-(add-hook 'prog-mode-hook 'rm-guess-indent-tabs-mode)
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
@@ -168,5 +157,10 @@ the end of the file."
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (setq indent-tabs-mode t)
-            (setq tab-width 4)))
+            (setq indent-tabs-mode nil)
+            (setq python-indent 4)))
+
+(require 'neotree)
+ (global-unset-key "\C-\\")
+(global-set-key (kbd "C-\\") 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
