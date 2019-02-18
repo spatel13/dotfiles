@@ -10,7 +10,7 @@ export TERM="xterm-256color"
 
 export EDITOR=emacs
 
-export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -106,3 +106,7 @@ alias acp='source /home/spatel13/anaconda2/bin/activate'
 alias update='pikaur -Syyu'
 
 alias pkglist="pacman -Qqe >"
+
+for filename in ~/.zsh_addons/*; do
+    source $filename
+done
