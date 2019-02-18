@@ -47,7 +47,7 @@ font-2 = WunconSiji:pixelsize=10;2
 
 modules-left = i3 xwindow right2
 modules-center =
-modules-right = left1 volume left3 memory left2 cpu left3 temperature left2 wlan left3 date left2 date2 left3 battery
+modules-right =  backlight  left1 volume left3 memory left2 cpu left3 temperature left2 wlan left3 date left2 date2 left3 battery
 
 tray-position = right
 tray-padding = 4
@@ -158,12 +158,17 @@ toggle-off-foreground = #55
 
 
 [module/backlight]
-type = internal/backlight
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/backlight.sh
 
-card = intel_backlight
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
 
-format = <ramp><label>
-label = %percentage%%
+format-prefix = " "
+
+label = %output%
+format-padding = 1
 
 ; Only applies if <ramp> is used
 ramp-0 = 🌕
@@ -196,33 +201,20 @@ type = internal/network
 interface = wlp2s0
 interval = 5.0
 
-format-connected = <ramp-signal><label-connected>
+format-connected = <label-connected>
 format-connected-overline = #9f78e1
 format-disconnected-overline = ${self.format-connected-overline}
 format-background = ${xrdb:color0:#00}
 
-label-connected = "%essid% "
+label-connected = " %essid% "
 label-connected-foreground = ${xrdb:color0:#ff}
 label-connected-background = ${xrdb:color15:#00}
-label-connected-padding = 0
+label-connected-padding = 1
 ;label-disconnected = %ifname% disconnected
-label-disconnected =  %ifname%
+label-disconnected = %ifname%
 label-disconnected-foreground = ${xrdb:color0:#ff}
 label-disconnected-background = ${xrdb:color15:#00}
 label-disconnected-padding = 1
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${xrdb:color0:#ff}
-ramp-signal-padding = 1
-;ramp-signal-4-foreground = #000
-;ramp-signal-3-foreground = #000
-;ramp-signal-2-foreground = #000
-;ramp-signal-1-foreground = #000
-;ramp-signal-0-foreground = #000
 
 [module/eth]
 type = internal/network
@@ -271,6 +263,7 @@ label-volume-padding = 1
 
 label-muted =  MUTED
 label-muted-foreground = ${xrdb:color0:#ff}
+label-muted-background = ${xrdb:color15:#00}
 label-muted-padding = 1
 
 bar-volume-width = 20
