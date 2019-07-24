@@ -181,7 +181,7 @@ exec devmon &
 exec dropbox &
 # exec gpmdp &
 # exec spotify &
-exec slack &
+# exec slack &
 exec redshift-gtk &
 exec solaar &
 exec blueman-applet &

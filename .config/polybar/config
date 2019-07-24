@@ -45,7 +45,7 @@ font-0 = Source Code Pro for Powerline:pixelsize=10;2
 font-1 = Unifont:size=9:medium:fontformat=truetype;0
 font-2 = WunconSiji:pixelsize=10;2
 
-modules-left = i3 xwindow right2
+modules-left = i3 right3 xwindow right2
 modules-center =
 modules-right =  backlight  left1 volume left3 memory left2 cpu left3 temperature left2 wlan left3 date left2 date2 left3 battery
 
@@ -114,8 +114,8 @@ label-focused-foreground = ${xrdb:color0:#ff}
 label-focused-overline= #ff
 label-focused-padding = 1
 
-label-unfocused-background = ${xrdb:color15:#00}
-label-unfocused-foreground = ${xrdb:color3:#00}
+;label-unfocused-background = ${xrdb:color15:#00}
+;label-unfocused-foreground = ${xrdb:color3:#00}
 label-unfocused = %index%
 label-unfocused-padding = 1
 
@@ -405,5 +405,11 @@ type = custom/text
 content = 
 content-foreground = ${xrdb:color15:#ff}
 content-background = ${root.background}
+
+[module/right3]
+type = custom/text
+content = 
+content-foreground = ${xrdb:color0:#ff}
+content-background = ${xrdb:color15:#00}
 
 ; vim:ft=dosini

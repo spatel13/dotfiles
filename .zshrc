@@ -63,7 +63,7 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions vagrant tmux tmuxinator archlinux common-aliases virtualenv)
+plugins=(git docker kubectl python tmux tmuxinator archlinux common-aliases virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
