@@ -17,8 +17,9 @@ export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+# POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir ssh vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv root_indicator background_jobs time)
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -97,15 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export VIRTUAL_ENV_DISABLE_PROMPT=0
 
-setxkbmap -layout us -option ctrl:nocaps
+cd
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias acp='source /home/spatel13/anaconda2/bin/activate'
-
-alias update='pikaur -Syyu'
-
-alias pkglist="pacman -Qqe >"
+alias update='sudo apt-get update && sudo apt-get -y upgrade'
 
 for filename in ~/.zsh_addons/*; do
     source $filename

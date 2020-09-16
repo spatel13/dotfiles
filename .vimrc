@@ -217,10 +217,10 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap arrow keys in normal mode to yell at me to use hjkl
-nnoremap <Left> :echo "Use h"<CR>
-nnoremap <Right> :echo "Use l"<CR>
-nnoremap <Up> :echo "Use k"<CR>
-nnoremap <Down> :echo "Use j"<CR>
+"nnoremap <Left> :echo "Use h"<CR>
+"nnoremap <Right> :echo "Use l"<CR>
+"nnoremap <Up> :echo "Use k"<CR>
+"nnoremap <Down> :echo "Use j"<CR>
 
 " Add Ctrl+[jk] to jump up and down 15 lines
 nnoremap <C-j> 10jzz
