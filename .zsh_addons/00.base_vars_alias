@@ -1,4 +1,9 @@
 export WORKON_HOME=$HOME/.envs
 export PROJECT_HOME=$HOME/Development
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 source /usr/local/bin/virtualenvwrapper.sh
+
+alias d='ls --color=auto -al'
+alias la='ls --color=auto -al'
+alias ll='ls --color=auto -l'

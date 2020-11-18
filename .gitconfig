@@ -7,34 +7,16 @@
 
 [core]
 	excludesfile = /home/spatel13/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 
-[color]
-	ui = true
-	branch = auto
-	diff = auto
-	status = auto
+[interactive]
+    diffFilter = delta --color-only
 
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
 
-[color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-
-[color "branch"]
-    current = red reverse
-    local = blue
-    remote = green
-
-[color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none

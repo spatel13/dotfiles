@@ -10,12 +10,12 @@ export TERM="xterm-256color"
 
 export EDITOR=emacs
 
-export PATH=$PATH:$HOME/.bin:$HOME/.local/bin
+export PATH="/usr/local/bin:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_CONTEXT_TEMPLATE="%n"
@@ -107,3 +107,5 @@ alias update='sudo apt-get update && sudo apt-get -y upgrade'
 for filename in ~/.zsh_addons/*; do
     source $filename
 done
+
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
