@@ -109,3 +109,5 @@ for filename in ~/.zsh_addons/*; do
 done
 
 source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

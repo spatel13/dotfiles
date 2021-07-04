@@ -7,3 +7,11 @@ source /usr/local/bin/virtualenvwrapper.sh
 alias d='ls --color=auto -al'
 alias la='ls --color=auto -al'
 alias ll='ls --color=auto -l'
+
+alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
