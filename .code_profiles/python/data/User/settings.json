@@ -1,0 +1,33 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "window.zoomLevel": 1,
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "python.autoComplete.addBrackets": true,
+    "better-comments.highlightPlainText": true,
+    "bracket-pair-colorizer-2.forceUniqueOpeningColor": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "vsicons.dontShowNewVersionMessage": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "python.showStartPage": false,
+    "sync.gist": "208dc153e73e1494e6cc3832a09ea9a7",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Pylance",
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.analysis.completeFunctionParens": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.linting.flake8Enabled": true
+}

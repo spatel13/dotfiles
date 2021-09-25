@@ -1,1 +1,3 @@
-./code_profiles/*/extensions/*
+.code_profiles/*/extensions/*
+.code_profiles/*/data/*
+!.code_profiles/*/data/User/settings.json
