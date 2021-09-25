@@ -102,8 +102,6 @@ cd
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias update='sudo apt-get update && sudo apt-get -y upgrade'
-
 for filename in ~/.zsh_addons/*; do
     source $filename
 done
@@ -111,3 +109,4 @@ done
 source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(curl -sSL git.io/forgit)
