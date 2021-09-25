@@ -1,5 +1,4 @@
 # Docker aliases
 alias di='docker images'
 alias dc='docker ps'
-alias dca='docker ps -a
-'
+alias dca='docker ps -a'

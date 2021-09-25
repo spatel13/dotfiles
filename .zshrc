@@ -98,13 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export VIRTUAL_ENV_DISABLE_PROMPT=0
 
-cd
-
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-alias update='sudo apt-get update && sudo apt-get -y upgrade'
-
-for filename in ~/.zsh_addons/*; do
+for filename in ~/.addons/*; do
     source $filename
 done
 
