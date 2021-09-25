@@ -4,6 +4,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 source /usr/local/bin/virtualenvwrapper.sh
 
+# Lazy alias
 alias d='ls -al'
 alias la='ls -al'
 alias ll='ls -l'

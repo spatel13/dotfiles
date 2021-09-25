@@ -1,4 +1,4 @@
-# Git aliases
+# Git alias
 alias gs='git status -sb'
 alias ga="git add"
 alias gau="git add -u"
@@ -31,3 +31,9 @@ alias grv="git remote -v"
 alias gst="git stash"
 alias gstp="git stash pop"
 alias gw="git show"
+function gpl {
+    git pull origin $1
+}
+function gph {
+    git push origin $1
+}

@@ -1,4 +1,6 @@
-# Docker aliases
+# Docker alias
 alias di='docker images'
 alias dc='docker ps'
 alias dca='docker ps -a'
+alias dl='docker logs'
+alias dlf='docker logs -f'
