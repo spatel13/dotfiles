@@ -1,0 +1,54 @@
+function vscode() {
+    [[ -z $PROFILE_HOME ]] && PROFILE_HOME=$HOME/.code_profiles
+
+    BASE_SETTINGS_LOC=$PROFILE_HOME/settings.json
+    BASE_EXTENSIONS_LOC=$PROFILE_HOME/extensions.txt
+
+    USAGE="vscode [ new | export | {profile_name}] [ {profile_name} | PATH ]"
+    if [[ $# -lt 1 && $# -gt 2 ]]; then
+        echo $USAGE
+        return 1
+    fi
+
+    case $1 in
+        new)
+            if [[ -z $2 ]]; then
+                echo "Needs a profile name"
+                echo $USAGE
+                return 1
+            fi
+
+            data_dir=$PROFILE_HOME/$2/data
+            extensions_dir=$PROFILE_HOME/$2/extensions
+            settings_filename=settings_$2.json
+            extensions_filename=extensions_$2.txt
+            if [[ ! -d $PROFILE_HOME/$2 ]]; then
+                echo "Creating profile folders"
+                mkdir -p $PROFILE_HOME/$2/data
+                mkdir -p $PROFILE_HOME/$2/extensions
+            fi
+
+            echo "Copying over the settings from base"
+            cp $BASE_SETTINGS_LOC $PROFILE_HOME/$settings_filename
+            cp $BASE_EXTENSIONS_LOC $PROFILE_HOME/$extensions_filename
+            mkdir -p $PROFILE_HOME/$2/data/User
+            ln -s $PROFILE_HOME/$settings_filename $PROFILE_HOME/$2/data/User/settings.json
+            ln -s $PROFILE_HOME/base/extensions/* $PROFILE_HOME/$2/extensions/
+            echo "DONE"
+        ;;
+        export)
+            data_dir=$PROFILE_HOME/$2/data
+            extensions_dir=$PROFILE_HOME/$2/extensions
+            extensions_filename=extensions_$2.txt
+            echo "EXPORTING" $2 "Extensions"
+            [ -d $data_dir ] && code --user-data-dir=$data_dir --extensions-dir=$extensions_dir --list-extensions > $PROFILE_HOME/$extensions_filename
+            echo "DONE"
+        ;;
+        *)
+            data_dir=$PROFILE_HOME/$1/data
+            extensions_dir=$PROFILE_HOME/$1/extensions
+
+            code --user-data-dir=$data_dir --extensions-dir=$extensions_dir $2
+        ;;
+    esac
+}

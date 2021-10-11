@@ -1,18 +1,13 @@
 export WORKON_HOME=$HOME/.envs
 export PROJECT_HOME=$HOME/Development
+export PROFILE_HOME=$HOME/.code_profiles
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-# Lazy alias
-alias d='ls -al'
-alias la='ls -al'
-alias ll='ls -l'
-
-alias brewup='brew update; brew upgrade; brew cleanup; brew doctor'
-
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^[OA' history-substring-search-up
 bindkey '^[OB' history-substring-search-down

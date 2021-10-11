@@ -1,1 +1,0 @@
-alias codepython='code --user-data-dir=$HOME/.code_profiles/python/data --extensions-dir=$HOME/.code_profiles/python/extensions'

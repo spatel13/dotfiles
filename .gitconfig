@@ -1,13 +1,13 @@
 [user]
-	name = spatel13
-	email = sahil.patel2461@gmail.com
+    name = spatel13
+    email = sahil.patel2461@gmail.com
 
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 
 [core]
-	excludesfile = /home/spatel13/.gitignore_global
-	pager = delta
+    excludesfile = /home/spatel13/.gitignore_global
+    pager = delta
 
 [interactive]
     diffFilter = delta --color-only
@@ -21,4 +21,4 @@
     file-style = bold yellow ul
     file-decoration-style = none
 [init]
-	defaultBranch = main
+    defaultBranch = main
