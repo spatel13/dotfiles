@@ -13,7 +13,11 @@ function vscode() {
     case $1 in
         new)
             if [[ -z $2 ]]; then
-                echo "Needs a profile name"
+                echo "Needs a profile name or command"
+                echo
+                echo "Available Profile(s)"
+                ls -l *.json | grep -v grep | egrep -o "[a-z_]*.json" | sed 's/settings_//' | sed 's/.json//' | sed 's/settings/base/' | sed 's/^/* /'
+                echo
                 echo $USAGE
                 return 1
             fi
@@ -40,15 +44,37 @@ function vscode() {
             data_dir=$PROFILE_HOME/$2/data
             extensions_dir=$PROFILE_HOME/$2/extensions
             extensions_filename=extensions_$2.txt
+            [[ $2 = "base" ]] && extensions_filename=extensions.txt
             echo "EXPORTING" $2 "Extensions"
             [ -d $data_dir ] && code --user-data-dir=$data_dir --extensions-dir=$extensions_dir --list-extensions > $PROFILE_HOME/$extensions_filename
             echo "DONE"
+        ;;
+        delete)
+            if [[ $2 = "base" ]]; then
+                echo "Cannot delete base profiles (!)"
+            else
+                profile_dir=$PROFILE_HOME/$2
+                settings_filename=settings_$2.json
+                extensions_filename=extensions_$2.txt
+                rm -rf $profile_dir
+                rm -f $settings_filename
+                rm -f $extensions_filename
+            fi
         ;;
         *)
             data_dir=$PROFILE_HOME/$1/data
             extensions_dir=$PROFILE_HOME/$1/extensions
 
-            code --user-data-dir=$data_dir --extensions-dir=$extensions_dir $2
+            if [[ -d $data_dir ]]; then
+                code --user-data-dir=$data_dir --extensions-dir=$extensions_dir $2
+            else
+                echo "Profile doesn't exist"
+                echo
+                echo "Available Profile(s)"
+                ls -l *.json | grep -v grep | egrep -o "[a-z_]*.json" | sed 's/settings_//' | sed 's/.json//' | sed 's/settings/base/' | sed 's/^/* /'
+                echo
+                echo $USAGE
+            fi
         ;;
     esac
 }
